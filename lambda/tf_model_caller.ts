@@ -1,4 +1,4 @@
-import { BedrockRuntimeClient, InvokeModelCommand, InvokeModelCommandInput } from "@aws-sdk/client-bedrock-runtime";
+import { BedrockRuntimeClient, InvokeModelCommand, InvokeModelCommandInput, Trace } from "@aws-sdk/client-bedrock-runtime";
 import { Handler } from "aws-lambda";
 
 export const handler: Handler = async (event, context) => {
@@ -27,14 +27,17 @@ export const handler: Handler = async (event, context) => {
                     messages: [
                         {role: 'user', 'content': question}
                     ]
-                })
+                }),
+                guardrailIdentifier: process.env.GUARDRAIL_ID,
+                guardrailVersion: `${process.env.GUARDRAIL_VERSION}`,
+                trace: Trace.ENABLED
             }
             
             const command = new InvokeModelCommand(inputCommand);
             const response = await rockerRuntimeClient.send(command);
 
-            const modelResponse = JSON.parse(new TextDecoder().decode(response.body)).content[0].text
-    
+            const modelResponse = JSON.parse(new TextDecoder().decode(response.body)).content[0].text;
+            
             return {
                 statusCode: 200,
                 body: modelResponse
