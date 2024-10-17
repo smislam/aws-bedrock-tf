@@ -1,4 +1,4 @@
-# An example of ethical and Safe Amazon Bedrock GenAI application using Anthropic's Claude 3.5 Sonnet model
+# An example of Amazon Bedrock Responsible GenAI application using Anthropic's Claude 3.5 Sonnet model
 
 This example demonstrates how Amazon Bedrock can be used for a Anthropic's Claude 3.5 Sonnet model using AWS Lambda and exposed as an API.  
 
@@ -6,7 +6,7 @@ This project is developed using Terraform.
 
 ## What does it build?
 * Creates an AWS Lambda function that interacts with Amazon Bedrock
-* Applies Amazon Bedrock Guardrails to follow ethical and safe rule to sanitize and block undesired requests and responses
+* Applies Amazon Bedrock Guardrails to follow Responsible AI (ethical and safe) rules to sanitize and block undesired requests and responses
 * Uses Anthropic's Claude 3.5 Sonnet model for chat
 * Creates an AWS API Gateway endpoint to expose the API
 
@@ -14,7 +14,7 @@ This project is developed using Terraform.
 * Deploy the Terraform code by running the provided `deploy.sh` file. Wait for the deploy to finish.  It will print out the API endpoint for you to use.
   * ![image](claude35-sonet-model.PNG "Example of API response from Anthropic's Claude 3.5 Sonnet model")
 * Example of unethical or unsafe request
-  * ![image](claude35-sonet-model.PNG "Example of Amazon Bedrock Guardrail intercepting bad prompt")
+  * ![image](guardrail-got-you.PNG "Example of Amazon Bedrock Guardrail intercepting bad prompt")
 
 ## References
 Learn about:
